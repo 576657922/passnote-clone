@@ -1,0 +1,16 @@
+# Render Blueprint — 一键部署 passnote-clone
+# 在 Render 控制台 New → Blueprint，连接本仓库即可读取此文件。
+services:
+  - type: web
+    name: passnote-clone
+    runtime: node
+    plan: free              # 免费档：无持久磁盘，闲置 15 分钟休眠，冷启动后用户数据重置（题库/术语在构建时 seed，始终存在）
+    region: singapore       # 离日本最近
+    buildCommand: npm install && npm run setup   # setup = seed 种子数据 + vite build
+    startCommand: npm start                       # node server/index.js，自动读取 Render 的 $PORT
+    healthCheckPath: /
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false         # 可选：填了才启用真实 AI 解析/トモ；不填则解析回退内置、トモ给提示
+      # - key: ANTHROPIC_MODEL   # 可选：默认 claude-opus-4-8
+      #   sync: false

@@ -2,6 +2,8 @@
 
 passnote.app 的功能复刻版：IT パスポート / 基本情報技術者 / 情報セキュリティマネジメント / 応用情報技術者 的刷题平台。**无会员系统，注册登录后即可使用全部功能。**
 
+🔗 **在线体验**：<LIVE_URL>（Render 免费档，闲置后首次访问有 ~30 秒冷启动；题库/术语始终在线，用户账号与进度在实例休眠后会重置）
+
 > ⚠️ 题库说明：原站的 8,095 道 IPA 真题和 1,074 条术语是其数据资产，本项目未抓取。内置的 62 道题、58 条术语为**原创示例内容**（IPA 真题风格），用于完整跑通所有功能。扩充方式见下文。
 
 ## 功能清单
@@ -47,6 +49,18 @@ npm start
 ```bash
 npm run dev          # 后端 5170 + Vite 5173，浏览器开 http://localhost:5173
 ```
+
+## 部署到 Render（免费）
+
+仓库已含 `render.yaml`（Blueprint），一键读取配置：
+
+1. 打开 <https://dashboard.render.com/blueprints> → **New Blueprint Instance**
+2. 连接本 GitHub 仓库（`576657922/passnote-clone`，私有仓库需先授权 Render 访问）
+3. Render 自动读取 `render.yaml` → 点 **Apply** 开始构建（`npm install && npm run setup`）
+4. （可选）在服务的 **Environment** 里填 `ANTHROPIC_API_KEY` 启用真实 AI；不填也能跑
+5. 构建完成后拿到 `https://passnote-clone-xxxx.onrender.com`
+
+> 免费档说明：无持久磁盘、闲置 15 分钟休眠。题库/术语在构建时 seed 进镜像，冷启动后始终存在；用户注册的账号与答题进度存于运行时文件，实例休眠/重部署后会重置——适合作为 demo 现场体验。需要长期留存用户数据时，升级 Render 付费档挂载磁盘，或改用带持久卷的平台（Fly.io 等）。
 
 ## 体验路径建议
 
