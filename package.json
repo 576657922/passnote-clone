@@ -1,0 +1,27 @@
+{
+  "name": "passnote-clone",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "IPA 考试刷题平台复刻（IT パスポート / 基本情報 / SG / AP）— 含全部 Pro 会员功能",
+  "scripts": {
+    "seed": "node server/seed.js",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "dev": "concurrently -k \"node server/index.js\" \"vite\"",
+    "setup": "npm run seed && npm run build"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.6.0",
+    "concurrently": "^9.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.0",
+    "vite": "^5.4.19"
+  }
+}
